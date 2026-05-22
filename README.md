@@ -1,0 +1,1 @@
+Compiling fnf is worse than any punishment, hell, pain, waste of time, sadness, being stolen from brainrot on steal a brainrot in Roblox for 5-year-olds, but all of that at the same time, BUT I'M DOING IT ANYWAY JEJEJEJEJEJEJE
