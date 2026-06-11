@@ -1,0 +1,28 @@
+name: Testing
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+jobs:
+  Job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          submodules: true
+
+      - name: Setup Haxe
+        uses: krdlab/setup-haxe@master
+        with:
+          haxe-version: latest
+
+      - name: Install Dependencies
+        run: sudo apt-get update && sudo apt-get install gamemode
+
+      - name: Compiling 
+        run: |
+          haxelib install hxcpp --quiet
+          haxelib dev hxgamemode .
+          cd example
+          haxe build.hxml

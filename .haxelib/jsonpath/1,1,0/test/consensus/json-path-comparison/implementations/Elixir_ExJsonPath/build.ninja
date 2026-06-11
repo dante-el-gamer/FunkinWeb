@@ -1,0 +1,8 @@
+root = implementations/Elixir_ExJsonPath
+
+rule compile
+  command = (cd $root && mix local.hex --if-missing --force && mix deps.get && mix escript.build && cd - && mv $root/jsonpath $out)
+
+build $root/build/jsonpath: compile | $root/lib/cli.ex $root/mix.exs $root/mix.lock
+
+build $root/install: phony $root/build/jsonpath

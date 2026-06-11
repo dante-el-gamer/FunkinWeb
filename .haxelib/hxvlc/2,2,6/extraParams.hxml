@@ -1,0 +1,2 @@
+--macro nullSafety('hxvlc')
+--macro hxvlc.util.macros.CheckMacro.run()

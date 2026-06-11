@@ -1,0 +1,195 @@
+From 65a639cc8268d378cdbc11952229f8bd40170d1d Mon Sep 17 00:00:00 2001
+From: MAJigsaw77 <77043862+MAJigsaw77@users.noreply.github.com>
+Date: Sat, 29 Nov 2025 20:11:14 +0200
+Subject: [PATCH] update the script with latest commit master
+
+---
+ extras/package/apple/build.conf | 55 +++++++++++++++++++++++++++++----
+ extras/package/apple/build.sh   | 20 +++++++-----
+ 2 files changed, 61 insertions(+), 14 deletions(-)
+
+diff --git a/extras/package/apple/build.conf b/extras/package/apple/build.conf
+index cb72bec33e..4611f89713 100644
+--- a/extras/package/apple/build.conf
++++ b/extras/package/apple/build.conf
+@@ -11,11 +11,13 @@
+ #
+ 
+ # macOS deployment target
+-export VLC_DEPLOYMENT_TARGET_MACOSX="10.9"
++export VLC_DEPLOYMENT_TARGET_MACOSX="10.11"
+ # iOS deployment target
+ export VLC_DEPLOYMENT_TARGET_IOS="9.0"
++export VLC_DEPLOYMENT_TARGET_IOS_SIMULATOR="12.0"
+ # tvOS deployment target
+-export VLC_DEPLOYMENT_TARGET_TVOS="10.2"
++export VLC_DEPLOYMENT_TARGET_TVOS="11.0"
++export VLC_DEPLOYMENT_TARGET_TVOS_SIMULATOR="12.0"
+ 
+ #
+ # Contrib options
+@@ -24,11 +26,52 @@ export VLC_DEPLOYMENT_TARGET_TVOS="10.2"
+ # Base contrib bootstrap options used on all OSes
+ export VLC_CONTRIB_OPTIONS_BASE=(
+     --disable-gpl
+-    --disable-all
++    --disable-gnuv3
++    --enable-ad-clauses
++    --disable-disc
++    --disable-sdl
++    --disable-SDL_image
++    --disable-iconv
++    --enable-zvbi
++    --disable-kate
++    --disable-caca
++    --disable-gettext
++    --disable-mpcdec
++    --disable-gme
++    --disable-srt
++    --disable-tremor
++    --enable-vorbis
++    --disable-sidplay2
++    --disable-samplerate
++    --disable-goom
++    --disable-vncserver
++    --disable-orc
++    --disable-schroedinger
++    --disable-chromaprint
++    --disable-mad
+     --enable-fribidi
+     --enable-libxml2
++    --enable-freetype2
++    --enable-ass
++    --disable-fontconfig
++    --disable-vncclient
++    --disable-gnutls
++    --disable-lua
++    --disable-luac
++    --disable-aribb24
++    --disable-aribb25
++    --enable-vpx
++    --enable-libdsm
+     --enable-libplacebo
++    --disable-sparkle
++    --disable-breakpad
++    --disable-ncurses
++    --disable-asdcplib
+     --enable-soxr
++    --enable-taglib
++    --disable-medialibrary
++    --disable-sqlite
++    --disable-decklink
+ )
+ 
+ # Additional contrib bootstrap options for macOS
+@@ -40,10 +83,13 @@ export VLC_CONTRIB_OPTIONS_MACOSX=(
+ 
+ # Additional contrib bootstrap options for iOS
+ export VLC_CONTRIB_OPTIONS_IOS=(
++    --disable-aom
+ )
+ 
+ # Additional contrib bootstrap options for tvOS
+ export VLC_CONTRIB_OPTIONS_TVOS=(
++    --disable-libarchive
++    --disable-aom
+ )
+ 
+ #
+@@ -53,8 +99,6 @@ export VLC_CONTRIB_OPTIONS_TVOS=(
+ # Base configure options for VLC
+ export VLC_CONFIG_OPTIONS_BASE=(
+     --disable-sse
+-    --disable-mmx
+-    --disable-a52
+     --disable-vcd
+     --disable-libcddb
+     --disable-macosx
+@@ -139,7 +183,6 @@ export VLC_MODULE_REMOVAL_LIST_BASE=(
+     bluescreen
+     erase
+     speex_resampler
+-    magnify
+     gradient
+     visual
+     invert
+diff --git a/extras/package/apple/build.sh b/extras/package/apple/build.sh
+index e59f720360..098b656e6a 100755
+--- a/extras/package/apple/build.sh
++++ b/extras/package/apple/build.sh
+@@ -181,16 +181,14 @@ check_tool()
+ set_deployment_target()
+ {
+     VLC_DEPLOYMENT_TARGET="$1"
+-    VLC_DEPLOYMENT_TARGET_LDFLAG="-Wl,-$VLC_HOST_OS"
+     VLC_DEPLOYMENT_TARGET_CFLAG="-m$VLC_HOST_OS"
+ 
+     if [ -n "$VLC_HOST_PLATFORM_SIMULATOR" ]; then
+-        VLC_DEPLOYMENT_TARGET_LDFLAG="${VLC_DEPLOYMENT_TARGET_LDFLAG}_simulator"
+         VLC_DEPLOYMENT_TARGET_CFLAG="${VLC_DEPLOYMENT_TARGET_CFLAG}-simulator"
+     fi
+ 
+-    VLC_DEPLOYMENT_TARGET_LDFLAG="${VLC_DEPLOYMENT_TARGET_LDFLAG}_version_min,${VLC_DEPLOYMENT_TARGET}"
+     VLC_DEPLOYMENT_TARGET_CFLAG="${VLC_DEPLOYMENT_TARGET_CFLAG}-version-min=${VLC_DEPLOYMENT_TARGET}"
++    VLC_DEPLOYMENT_TARGET_LDFLAG="${VLC_DEPLOYMENT_TARGET_CFLAG}"
+ }
+ 
+ # Validates the architecture and sets VLC_HOST_ARCH
+@@ -233,7 +231,7 @@ set_host_triplet()
+     # Therefore we construct a triplet here without a version number, which
+     # will not match the autoconf "guessed" host machine triplet.
+     VLC_HOST_TRIPLET="${triplet_arch}-apple-darwin"
+-    VLC_HOST_TRIPLET="${VLC_HOST_TRIPLET/arm64/aarch64}"
++    VLC_HOST_TRIPLET="${VLC_HOST_TRIPLET/arm64-/aarch64-}"
+ }
+ 
+ # Set the VLC_BUILD_TRIPLET based on the architecture
+@@ -281,7 +279,7 @@ validate_sdk_name()
+             VLC_HOST_PLATFORM="iOS-Simulator"
+             VLC_HOST_PLATFORM_SIMULATOR="yes"
+             VLC_HOST_OS="ios"
+-            set_deployment_target "$VLC_DEPLOYMENT_TARGET_IOS"
++            set_deployment_target "$VLC_DEPLOYMENT_TARGET_IOS_SIMULATOR"
+             ;;
+         appletvos*)
+             VLC_HOST_PLATFORM="tvOS"
+@@ -292,7 +290,7 @@ validate_sdk_name()
+             VLC_HOST_PLATFORM="tvOS-Simulator"
+             VLC_HOST_PLATFORM_SIMULATOR="yes"
+             VLC_HOST_OS="tvos"
+-            set_deployment_target "$VLC_DEPLOYMENT_TARGET_TVOS"
++            set_deployment_target "$VLC_DEPLOYMENT_TARGET_TVOS_SIMULATOR"
+             ;;
+         macosx*)
+             VLC_HOST_PLATFORM="macOS"
+@@ -572,6 +570,9 @@ elif [ "$VLC_HOST_OS" = "tvos" ]; then
+     export BUILDFORIOS="yes"
+     export BUILDFORTVOS="yes"
+ fi
++if [ "$VLC_HOST_PLATFORM_SIMULATOR" = "yes" ]; then
++    export BUILDFORSIMULATOR="yes"
++fi
+ 
+ # Default to "make" if there is no MAKE env variable
+ MAKE=${MAKE:-make}
+@@ -712,12 +713,15 @@ cd "${VLC_BUILD_DIR}/build" || abort_err "Failed cd to VLC build dir"
+ mkdir -p "$VLC_INSTALL_DIR"
+ 
+ vlcSetSymbolEnvironment \
+-hostenv ../../configure \
+-    --with-contrib="$VLC_CONTRIB_INSTALL_DIR" \
++hostenv "${VLC_SRC_DIR}/configure" \
+     --host="$VLC_HOST_TRIPLET" \
+     --build="$VLC_BUILD_TRIPLET" \
+     --prefix="$VLC_INSTALL_DIR" \
++    --with-contrib="$VLC_CONTRIB_INSTALL_DIR" \
+     "${VLC_CONFIG_OPTIONS[@]}" \
++    CFLAGS="${CFLAGS}" \
++    OBJCFLAGS="${OBJCFLAGS}" \
++    CXXFLAGS="${CXXFLAGS}" \
+  || abort_err "Configuring VLC failed"
+ 
+ $MAKE || abort_err "Building VLC failed"
+-- 
+2.47.1.windows.1
+

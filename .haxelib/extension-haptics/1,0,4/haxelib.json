@@ -1,0 +1,23 @@
+{
+	"name": "extension-haptics",
+	"url": "https://github.com/LimeExtensions/extension-haptics",
+	"license": "MIT",
+	"description": "A Haxe/Lime extension that implements Haptic Feedback effects on Android and iOS Devices.",
+	"tags": [
+		"haxe",
+		"lime",
+		"android",
+		"ios",
+		"java",
+		"objcpp",
+		"haptic-feedback"
+	],
+	"releasenote": "Remove vibrateDirectional functions.",
+	"contributors": [
+		"MAJigsaw77"
+	],
+	"version": "1.0.4",
+	"dependencies": {
+		"lime": ""
+	}
+}

@@ -1,0 +1,9 @@
+root = implementations/Perl_JSON-Path
+builddir = $root/build
+
+rule install_json_path
+  command = $root/install.sh $builddir && echo > $out
+
+build $builddir/json_path_installed: install_json_path
+
+build $root/install: phony $builddir/json_path_installed

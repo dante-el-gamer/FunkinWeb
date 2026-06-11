@@ -1,0 +1,22 @@
+{
+	"name": "hxgamemode",
+	"url": "https://github.com/MAJigsaw77/hxgamemode",
+	"license": "MIT",
+	"tags": [
+		"linux",
+		"cpp",
+		"haxe",
+		"gamemode",
+		"videogames"
+	],
+	"description": "Haxe/hxcpp @:native bindings for GameMode.",
+	"version": "1.0.1",
+	"releasenote": "Fixed the readme installation instructions.",
+	"contributors": [
+		"MAJigsaw77"
+	],
+	"classPath": "source",
+	"dependencies": {
+		"hxcpp": ""
+	}
+}

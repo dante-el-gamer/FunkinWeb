@@ -1,0 +1,944 @@
+package hxvlc.externs;
+
+import cpp.CastCharStar;
+import cpp.ConstCharStar;
+import cpp.Int64;
+import cpp.RawConstPointer;
+import cpp.RawPointer;
+import cpp.SizeT;
+import cpp.UInt32;
+import cpp.UInt64;
+import cpp.UInt8;
+import cpp.VarList;
+import cpp.VoidStarConstStar;
+
+@:include('vlc/vlc.h')
+@:native('libvlc_time_t')
+@:scalar
+@:coreType
+@:notNull
+extern abstract LibVLC_Time_T from cpp.Int64 to cpp.Int64 {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_instance_t')
+extern class LibVLC_Instance_T {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_t')
+extern class LibVLC_Media_T {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_list_t')
+extern class LibVLC_Media_List_T {}
+
+extern enum abstract LibVLC_Meta_T(LibVLC_Meta_T_Impl)
+{
+	@:native('libvlc_meta_Title')
+	var LibVLC_Meta_Title;
+
+	@:native('libvlc_meta_Artist')
+	var LibVLC_Meta_Artist;
+
+	@:native('libvlc_meta_Genre')
+	var LibVLC_Meta_Genre;
+
+	@:native('libvlc_meta_Copyright')
+	var LibVLC_Meta_Copyright;
+
+	@:native('libvlc_meta_Album')
+	var LibVLC_Meta_Album;
+
+	@:native('libvlc_meta_TrackNumber')
+	var LibVLC_Meta_TrackNumber;
+
+	@:native('libvlc_meta_Description')
+	var LibVLC_Meta_Description;
+
+	@:native('libvlc_meta_Rating')
+	var LibVLC_Meta_Rating;
+
+	@:native('libvlc_meta_Date')
+	var LibVLC_Meta_Date;
+
+	@:native('libvlc_meta_Setting')
+	var LibVLC_Meta_Setting;
+
+	@:native('libvlc_meta_URL')
+	var LibVLC_Meta_URL;
+
+	@:native('libvlc_meta_Language')
+	var LibVLC_Meta_Language;
+
+	@:native('libvlc_meta_NowPlaying')
+	var LibVLC_Meta_NowPlaying;
+
+	@:native('libvlc_meta_Publisher')
+	var LibVLC_Meta_Publisher;
+
+	@:native('libvlc_meta_EncodedBy')
+	var LibVLC_Meta_EncodedBy;
+
+	@:native('libvlc_meta_ArtworkURL')
+	var LibVLC_Meta_ArtworkURL;
+
+	@:native('libvlc_meta_TrackID')
+	var LibVLC_Meta_TrackID;
+
+	@:native('libvlc_meta_TrackTotal')
+	var LibVLC_Meta_TrackTotal;
+
+	@:native('libvlc_meta_Director')
+	var LibVLC_Meta_Director;
+
+	@:native('libvlc_meta_Season')
+	var LibVLC_Meta_Season;
+
+	@:native('libvlc_meta_Episode')
+	var LibVLC_Meta_Episode;
+
+	@:native('libvlc_meta_ShowName')
+	var LibVLC_Meta_ShowName;
+
+	@:native('libvlc_meta_Actors')
+	var LibVLC_Meta_Actors;
+
+	@:native('libvlc_meta_AlbumArtist')
+	var LibVLC_Meta_AlbumArtist;
+
+	@:native('libvlc_meta_DiscNumber')
+	var LibVLC_Meta_DiscNumber;
+
+	@:native('libvlc_meta_DiscTotal')
+	var LibVLC_Meta_DiscTotal;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Meta_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_meta_t')
+private extern class LibVLC_Meta_T_Impl {}
+
+extern enum abstract LibVLC_Track_Type(LibVLC_Track_Type_Impl)
+{
+	@:native('libvlc_track_unknown')
+	var LibVLC_Track_Unknown;
+
+	@:native('libvlc_track_audio')
+	var LibVLC_Track_Audio;
+
+	@:native('libvlc_track_video')
+	var LibVLC_Track_Video;
+
+	@:native('libvlc_track_text')
+	var LibVLC_Track_Text;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Track_Type
+		return cast i;
+
+	@:to
+	extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_track_type_t')
+private extern class LibVLC_Track_Type_Impl {}
+
+extern enum abstract LibVLC_Video_Orient(LibVLC_Video_Orient_Impl)
+{
+	@:native('libvlc_video_orient_top_left')
+	var LibVLC_Video_Orient_Top_Left;
+
+	@:native('libvlc_video_orient_top_right')
+	var LibVLC_Video_Orient_Top_Right;
+
+	@:native('libvlc_video_orient_bottom_left')
+	var LibVLC_Video_Orient_Bottom_Left;
+
+	@:native('libvlc_video_orient_bottom_right')
+	var LibVLC_Video_Orient_Bottom_Right;
+
+	@:native('libvlc_video_orient_left_top')
+	var LibVLC_Video_Orient_Left_Top;
+
+	@:native('libvlc_video_orient_left_bottom')
+	var LibVLC_Video_Orient_Left_Bottom;
+
+	@:native('libvlc_video_orient_right_top')
+	var LibVLC_Video_Orient_Right_Top;
+
+	@:native('libvlc_video_orient_right_bottom')
+	var LibVLC_Video_Orient_Right_Bottom;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Video_Orient
+		return cast i;
+
+	@:to
+	extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_video_orient_t')
+private extern class LibVLC_Video_Orient_Impl {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_stats_t')
+@:structAccess
+extern class LibVLC_Media_Stats_T
+{
+	function new():Void;
+
+	var i_read_bytes:Int;
+	var f_input_bitrate:Single;
+	var i_demux_read_bytes:Int;
+	var f_demux_bitrate:Single;
+	var i_demux_corrupted:Int;
+	var i_demux_discontinuity:Int;
+	var i_decoded_video:Int;
+	var i_decoded_audio:Int;
+	var i_displayed_pictures:Int;
+	var i_lost_pictures:Int;
+	var i_played_abuffers:Int;
+	var i_lost_abuffers:Int;
+	var i_sent_packets:Int;
+	var i_sent_bytes:Int;
+	var f_send_bitrate:Single;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_audio_track_t')
+@:structAccess
+extern class LibVLC_Audio_Track_T
+{
+	function new():Void;
+
+	var i_channels:UInt32;
+	var i_rate:UInt32;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_video_track_t')
+@:structAccess
+extern class LibVLC_Video_Track_T
+{
+	function new():Void;
+
+	var i_height:UInt32;
+	var i_width:UInt32;
+	var i_sar_num:UInt32;
+	var i_sar_den:UInt32;
+	var i_frame_rate_num:UInt32;
+	var i_frame_rate_den:UInt32;
+	var i_orientation:LibVLC_Video_Orient;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_subtitle_track_t')
+@:structAccess
+extern class LibVLC_Subtitle_Track_T
+{
+	function new():Void;
+
+	var psz_encoding:CastCharStar;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_track_t')
+@:structAccess
+extern class LibVLC_Media_Track_T
+{
+	function new():Void;
+
+	var i_codec:UInt32;
+	var i_original_fourcc:UInt32;
+	var i_id:Int;
+	var i_type:LibVLC_Track_Type;
+
+	var i_profile:Int;
+	var i_level:Int;
+
+	var audio:RawPointer<LibVLC_Audio_Track_T>;
+	var video:RawPointer<LibVLC_Video_Track_T>;
+	var subtitle:RawPointer<LibVLC_Subtitle_Track_T>;
+
+	var i_bitrate:UInt32;
+	var psz_language:CastCharStar;
+	var psz_description:CastCharStar;
+}
+
+extern enum abstract LibVLC_Media_Parse_Flag_T(LibVLC_Media_Parse_Flag_T_Impl)
+{
+	@:native('libvlc_media_parse_local')
+	var LibVLC_Media_Parse_Local;
+
+	@:native('libvlc_media_parse_network')
+	var LibVLC_Media_Parse_Network;
+
+	@:native('libvlc_media_fetch_local')
+	var LibVLC_Media_Fetch_Local;
+
+	@:native('libvlc_media_fetch_network')
+	var LibVLC_Media_Fetch_Network;
+
+	@:native('libvlc_media_do_interact')
+	var LibVLC_Media_Do_Interact;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Media_Parse_Flag_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_slave_type_t')
+private extern class LibVLC_Media_Slave_Type_T_Impl {}
+
+extern enum abstract LibVLC_Media_Slave_Type_T(LibVLC_Media_Slave_Type_T_Impl)
+{
+	@:native('libvlc_media_slave_type_subtitle')
+	var LibVLC_Media_Slave_Type_Subtitle;
+
+	@:native('libvlc_media_slave_type_audio')
+	var LibVLC_Media_Slave_Type_Audio;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Media_Slave_Type_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_parse_flag_t')
+private extern class LibVLC_Media_Parse_Flag_T_Impl {}
+
+extern enum abstract LibVLC_Media_Parsed_Status_T(LibVLC_Media_Parsed_Status_T_Impl)
+{
+	@:native('libvlc_media_parsed_status_skipped')
+	var LibVLC_Media_Parsed_Status_Skipped;
+
+	@:native('libvlc_media_parsed_status_failed')
+	var LibVLC_Media_Parsed_Status_Failed;
+
+	@:native('libvlc_media_parsed_status_timeout')
+	var LibVLC_Media_Parsed_Status_Timeout;
+
+	@:native('libvlc_media_parsed_status_done')
+	var LibVLC_Media_Parsed_Status_Done;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Media_Parsed_Status_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_parsed_status_t')
+private extern class LibVLC_Media_Parsed_Status_T_Impl {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_player_t')
+extern class LibVLC_Media_Player_T {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_event_manager_t')
+extern class LibVLC_Event_Manager_T {}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_event_t')
+@:structAccess
+extern class LibVLC_Event_T
+{
+	function new():Void;
+
+	var type:Int;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_log_t')
+extern class LibVLC_Log_T {}
+
+extern enum abstract LibVLC_Event_E(LibVLC_Event_E_Impl)
+{
+	@:native('libvlc_MediaMetaChanged')
+	var LibVLC_MediaMetaChanged;
+
+	@:native('libvlc_MediaSubItemAdded')
+	var LibVLC_MediaSubItemAdded;
+
+	@:native('libvlc_MediaDurationChanged')
+	var LibVLC_MediaDurationChanged;
+
+	@:native('libvlc_MediaParsedChanged')
+	var LibVLC_MediaParsedChanged;
+
+	@:native('libvlc_MediaFreed')
+	var LibVLC_MediaFreed;
+
+	@:native('libvlc_MediaStateChanged')
+	var LibVLC_MediaStateChanged;
+
+	@:native('libvlc_MediaSubItemTreeAdded')
+	var LibVLC_MediaSubItemTreeAdded;
+
+	@:native('libvlc_MediaPlayerMediaChanged')
+	var LibVLC_MediaPlayerMediaChanged;
+
+	@:native('libvlc_MediaPlayerNothingSpecial')
+	var LibVLC_MediaPlayerNothingSpecial;
+
+	@:native('libvlc_MediaPlayerOpening')
+	var LibVLC_MediaPlayerOpening;
+
+	@:native('libvlc_MediaPlayerBuffering')
+	var LibVLC_MediaPlayerBuffering;
+
+	@:native('libvlc_MediaPlayerPlaying')
+	var LibVLC_MediaPlayerPlaying;
+
+	@:native('libvlc_MediaPlayerPaused')
+	var LibVLC_MediaPlayerPaused;
+
+	@:native('libvlc_MediaPlayerStopped')
+	var LibVLC_MediaPlayerStopped;
+
+	@:native('libvlc_MediaPlayerForward')
+	var LibVLC_MediaPlayerForward;
+
+	@:native('libvlc_MediaPlayerBackward')
+	var LibVLC_MediaPlayerBackward;
+
+	@:native('libvlc_MediaPlayerEndReached')
+	var LibVLC_MediaPlayerEndReached;
+
+	@:native('libvlc_MediaPlayerEncounteredError')
+	var LibVLC_MediaPlayerEncounteredError;
+
+	@:native('libvlc_MediaPlayerTimeChanged')
+	var LibVLC_MediaPlayerTimeChanged;
+
+	@:native('libvlc_MediaPlayerPositionChanged')
+	var LibVLC_MediaPlayerPositionChanged;
+
+	@:native('libvlc_MediaPlayerSeekableChanged')
+	var LibVLC_MediaPlayerSeekableChanged;
+
+	@:native('libvlc_MediaPlayerPausableChanged')
+	var LibVLC_MediaPlayerPausableChanged;
+
+	@:native('libvlc_MediaPlayerTitleChanged')
+	var LibVLC_MediaPlayerTitleChanged;
+
+	@:native('libvlc_MediaPlayerSnapshotTaken')
+	var LibVLC_MediaPlayerSnapshotTaken;
+
+	@:native('libvlc_MediaPlayerLengthChanged')
+	var LibVLC_MediaPlayerLengthChanged;
+
+	@:native('libvlc_MediaPlayerVout')
+	var LibVLC_MediaPlayerVout;
+
+	@:native('libvlc_MediaPlayerScrambledChanged')
+	var LibVLC_MediaPlayerScrambledChanged;
+
+	@:native('libvlc_MediaPlayerESAdded')
+	var LibVLC_MediaPlayerESAdded;
+
+	@:native('libvlc_MediaPlayerESDeleted')
+	var LibVLC_MediaPlayerESDeleted;
+
+	@:native('libvlc_MediaPlayerESSelected')
+	var LibVLC_MediaPlayerESSelected;
+
+	@:native('libvlc_MediaPlayerCorked')
+	var LibVLC_MediaPlayerCorked;
+
+	@:native('libvlc_MediaPlayerUncorked')
+	var LibVLC_MediaPlayerUncorked;
+
+	@:native('libvlc_MediaPlayerMuted')
+	var LibVLC_MediaPlayerMuted;
+
+	@:native('libvlc_MediaPlayerUnmuted')
+	var LibVLC_MediaPlayerUnmuted;
+
+	@:native('libvlc_MediaPlayerAudioVolume')
+	var LibVLC_MediaPlayerAudioVolume;
+
+	@:native('libvlc_MediaPlayerAudioDevice')
+	var LibVLC_MediaPlayerAudioDevice;
+
+	@:native('libvlc_MediaPlayerChapterChanged')
+	var LibVLC_MediaPlayerChapterChanged;
+
+	@:native('libvlc_MediaListItemAdded')
+	var LibVLC_MediaListItemAdded;
+
+	@:native('libvlc_MediaListWillAddItem')
+	var LibVLC_MediaListWillAddItem;
+
+	@:native('libvlc_MediaListItemDeleted')
+	var LibVLC_MediaListItemDeleted;
+
+	@:native('libvlc_MediaListWillDeleteItem')
+	var LibVLC_MediaListWillDeleteItem;
+
+	@:native('libvlc_MediaListEndReached')
+	var LibVLC_MediaListEndReached;
+
+	@:native('libvlc_MediaListViewItemAdded')
+	var LibVLC_MediaListViewItemAdded;
+
+	@:native('libvlc_MediaListViewWillAddItem')
+	var LibVLC_MediaListViewWillAddItem;
+
+	@:native('libvlc_MediaListViewItemDeleted')
+	var LibVLC_MediaListViewItemDeleted;
+
+	@:native('libvlc_MediaListViewWillDeleteItem')
+	var LibVLC_MediaListViewWillDeleteItem;
+
+	@:native('libvlc_MediaListPlayerPlayed')
+	var LibVLC_MediaListPlayerPlayed;
+
+	@:native('libvlc_MediaListPlayerNextItemSet')
+	var LibVLC_MediaListPlayerNextItemSet;
+
+	@:native('libvlc_MediaListPlayerStopped')
+	var LibVLC_MediaListPlayerStopped;
+
+	@:native('libvlc_MediaDiscovererStarted')
+	var LibVLC_MediaDiscovererStarted;
+
+	@:native('libvlc_MediaDiscovererEnded')
+	var LibVLC_MediaDiscovererEnded;
+
+	@:native('libvlc_RendererDiscovererItemAdded')
+	var LibVLC_RendererDiscovererItemAdded;
+
+	@:native('libvlc_RendererDiscovererItemDeleted')
+	var LibVLC_RendererDiscovererItemDeleted;
+
+	@:native('libvlc_VlmMediaAdded')
+	var LibVLC_VlmMediaAdded;
+
+	@:native('libvlc_VlmMediaRemoved')
+	var LibVLC_VlmMediaRemoved;
+
+	@:native('libvlc_VlmMediaChanged')
+	var LibVLC_VlmMediaChanged;
+
+	@:native('libvlc_VlmMediaInstanceStarted')
+	var LibVLC_VlmMediaInstanceStarted;
+
+	@:native('libvlc_VlmMediaInstanceStopped')
+	var LibVLC_VlmMediaInstanceStopped;
+
+	@:native('libvlc_VlmMediaInstanceStatusInit')
+	var LibVLC_VlmMediaInstanceStatusInit;
+
+	@:native('libvlc_VlmMediaInstanceStatusOpening')
+	var LibVLC_VlmMediaInstanceStatusOpening;
+
+	@:native('libvlc_VlmMediaInstanceStatusPlaying')
+	var LibVLC_VlmMediaInstanceStatusPlaying;
+
+	@:native('libvlc_VlmMediaInstanceStatusPause')
+	var LibVLC_VlmMediaInstanceStatusPause;
+
+	@:native('libvlc_VlmMediaInstanceStatusEnd')
+	var LibVLC_VlmMediaInstanceStatusEnd;
+
+	@:native('libvlc_VlmMediaInstanceStatusError')
+	var LibVLC_VlmMediaInstanceStatusError;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Event_E
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_event_e')
+private extern class LibVLC_Event_E_Impl {}
+
+typedef LibVLC_Callback_T = cpp.Callable<(p_event:RawConstPointer<LibVLC_Event_T>, p_data:RawPointer<cpp.Void>) -> Void>;
+typedef LibVLC_Log_CB = cpp.Callable<(data:RawPointer<cpp.Void>, level:Int, ctx:RawConstPointer<LibVLC_Log_T>, fmt:ConstCharStar, args:VarList) -> Void>;
+typedef LibVLC_Media_Open_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>, datap:RawPointer<RawPointer<cpp.Void>>, sizep:RawPointer<UInt64>) -> Int>;
+typedef LibVLC_Media_Read_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>, buf:RawPointer<UInt8>, len:SizeT) -> cpp.SSizeT>;
+typedef LibVLC_Media_Seek_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>, offset:UInt64) -> Int>;
+typedef LibVLC_Media_Close_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>) -> Void>;
+
+typedef LibVLC_Video_Format_CB = cpp.Callable<(opaque:RawPointer<RawPointer<cpp.Void>>, chroma:CastCharStar, width:RawPointer<UInt32>,
+		height:RawPointer<UInt32>, pitches:RawPointer<UInt32>, lines:RawPointer<UInt32>) -> cpp.UInt32>;
+
+typedef LibVLC_Video_Cleanup_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>) -> Void>;
+typedef LibVLC_Video_Lock_CB = cpp.Callable<(data:RawPointer<cpp.Void>, p_pixels:RawPointer<RawPointer<cpp.Void>>) -> cpp.RawPointer<cpp.Void>>;
+typedef LibVLC_Video_Unlock_CB = cpp.Callable<(data:RawPointer<cpp.Void>, id:RawPointer<cpp.Void>, p_pixels:VoidStarConstStar) -> Void>;
+typedef LibVLC_Video_Display_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>, picture:RawPointer<cpp.Void>) -> Void>;
+typedef LibVLC_Audio_Play_CB = cpp.Callable<(data:RawPointer<cpp.Void>, samples:RawConstPointer<cpp.Void>, count:UInt32, pts:Int64) -> Void>;
+typedef LibVLC_Audio_Pause_CB = cpp.Callable<(data:RawPointer<cpp.Void>, pts:Int64) -> Void>;
+typedef LibVLC_Audio_Resume_CB = cpp.Callable<(data:RawPointer<cpp.Void>, pts:Int64) -> Void>;
+typedef LibVLC_Audio_Flush_CB = cpp.Callable<(data:RawPointer<cpp.Void>, pts:Int64) -> Void>;
+typedef LibVLC_Audio_Drain_CB = cpp.Callable<(data:RawPointer<cpp.Void>) -> Void>;
+
+typedef LibVLC_Audio_Setup_CB = cpp.Callable<(opaque:RawPointer<RawPointer<cpp.Void>>, format:CastCharStar, rate:RawPointer<UInt32>,
+		channels:RawPointer<UInt32>) -> Int>;
+
+typedef LibVLC_Audio_Cleanup_CB = cpp.Callable<(opaque:RawPointer<cpp.Void>) -> Void>;
+typedef LibVLC_Audio_Set_Volume_CB = cpp.Callable<(data:RawPointer<cpp.Void>, volume:Single, mute:Bool) -> Void>;
+
+@:include('vlc/vlc.h')
+@:native('libvlc_track_description_t')
+@:structAccess
+extern class LibVLC_Track_Description_T
+{
+	function new():Void;
+
+	var i_id:Int;
+	var psz_name:ConstCharStar;
+	var p_next:RawPointer<LibVLC_Track_Description_T>;
+}
+
+extern enum abstract LibVLC_Media_Player_Role_T(LibVLC_Media_Player_Role_T_Impl)
+{
+	@:native('libvlc_role_None')
+	var LibVLC_Role_None;
+
+	@:native('libvlc_role_Music')
+	var LibVLC_Role_Music;
+
+	@:native('libvlc_role_Video')
+	var LibVLC_Role_Video;
+
+	@:native('libvlc_role_Communication')
+	var LibVLC_Role_Communication;
+
+	@:native('libvlc_role_Game')
+	var LibVLC_Role_Game;
+
+	@:native('libvlc_role_Notification')
+	var LibVLC_Role_Notification;
+
+	@:native('libvlc_role_Animation')
+	var LibVLC_Role_Animation;
+
+	@:native('libvlc_role_Production')
+	var LibVLC_Role_Production;
+
+	@:native('libvlc_role_Accessibility')
+	var LibVLC_Role_Accessibility;
+
+	@:native('libvlc_role_Test')
+	var LibVLC_Role_Test;
+
+	@:native('libvlc_role_Last')
+	var LibVLC_Role_Last;
+
+	@:from
+	static public inline function fromInt(i:Int):LibVLC_Media_Player_Role_T
+		return cast i;
+
+	@:to extern public inline function toInt():Int
+		return untyped this;
+}
+
+@:include('vlc/vlc.h')
+@:native('libvlc_media_player_role_t')
+private extern class LibVLC_Media_Player_Role_T_Impl {}
+
+@:buildXml('<include name="${haxelib:hxvlc}/project/Build.xml" />')
+@:include('vlc/vlc.h')
+extern class LibVLC
+{
+	@:native('libvlc_new')
+	static function alloc(argc:Int, argv:RawPointer<ConstCharStar>):RawPointer<LibVLC_Instance_T>;
+
+	@:native('libvlc_release')
+	static function release(p_instance:RawPointer<LibVLC_Instance_T>):Void;
+
+	@:native('libvlc_set_user_agent')
+	static function set_user_agent(p_instance:RawPointer<LibVLC_Instance_T>, name:ConstCharStar, http:ConstCharStar):Void;
+
+	@:native('libvlc_errmsg')
+	static function errmsg():ConstCharStar;
+
+	@:native('libvlc_get_version')
+	static function get_version():ConstCharStar;
+
+	@:native('libvlc_get_compiler')
+	static function get_compiler():ConstCharStar;
+
+	@:native('libvlc_get_changeset')
+	static function get_changeset():ConstCharStar;
+
+	@:native('libvlc_event_attach')
+	static function event_attach(p_event_manager:RawPointer<LibVLC_Event_Manager_T>, i_event_type:Int, f_callback:LibVLC_Callback_T,
+		user_data:RawPointer<cpp.Void>):Int;
+
+	@:native('libvlc_event_detach')
+	static function event_detach(p_event_manager:RawPointer<LibVLC_Event_Manager_T>, i_event_type:Int, f_callback:LibVLC_Callback_T,
+		user_data:RawPointer<cpp.Void>):Void;
+
+	@:native('libvlc_event_type_name')
+	static function event_type_name(event_type:Int):ConstCharStar;
+
+	@:native('libvlc_log_unset')
+	static function log_unset(p_instance:RawPointer<LibVLC_Instance_T>):Void;
+
+	@:native('libvlc_log_set')
+	static function log_set(p_instance:RawPointer<LibVLC_Instance_T>, cb:LibVLC_Log_CB, data:RawPointer<cpp.Void>):Void;
+
+	@:native('libvlc_log_get_context')
+	static function log_get_context(ctx:RawConstPointer<LibVLC_Log_T>, module:RawPointer<ConstCharStar>, file:RawPointer<ConstCharStar>,
+		line:RawPointer<UInt32>):Void;
+
+	@:native('libvlc_delay')
+	static function delay(pts:Int64):Int64;
+
+	@:native('libvlc_media_new_location')
+	static function media_new_location(p_instance:RawPointer<LibVLC_Instance_T>, psz_mrl:ConstCharStar):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_new_path')
+	static function media_new_path(p_instance:RawPointer<LibVLC_Instance_T>, path:ConstCharStar):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_new_fd')
+	static function media_new_fd(p_instance:RawPointer<LibVLC_Instance_T>, fd:Int):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_new_callbacks')
+	static function media_new_callbacks(p_instance:RawPointer<LibVLC_Instance_T>, open_cb:LibVLC_Media_Open_CB, read_cb:LibVLC_Media_Read_CB,
+		seek_cb:LibVLC_Media_Seek_CB, close_cb:LibVLC_Media_Close_CB, opaque:RawPointer<cpp.Void>):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_add_option')
+	static function media_add_option(p_md:RawPointer<LibVLC_Media_T>, psz_options:ConstCharStar):Void;
+
+	@:native('libvlc_media_release')
+	static function media_release(p_md:RawPointer<LibVLC_Media_T>):Void;
+
+	@:native('libvlc_media_get_mrl')
+	static function media_get_mrl(p_md:RawPointer<LibVLC_Media_T>):CastCharStar;
+
+	@:native('libvlc_media_get_meta')
+	static function media_get_meta(p_md:RawPointer<LibVLC_Media_T>, e_meta:LibVLC_Meta_T):CastCharStar;
+
+	@:native('libvlc_media_set_meta')
+	static function media_set_meta(p_md:RawPointer<LibVLC_Media_T>, e_meta:LibVLC_Meta_T, psz_value:ConstCharStar):Void;
+
+	@:native('libvlc_media_save_meta')
+	static function media_save_meta(p_md:RawPointer<LibVLC_Media_T>):Int;
+
+	@:native('libvlc_media_get_stats')
+	static function media_get_stats(p_md:RawPointer<LibVLC_Media_T>, p_stats:RawPointer<LibVLC_Media_Stats_T>):Int;
+
+	@:native('libvlc_media_subitems')
+	static function media_subitems(p_md:RawPointer<LibVLC_Media_T>):RawPointer<LibVLC_Media_List_T>;
+
+	@:native('libvlc_media_event_manager')
+	static function media_event_manager(p_md:RawPointer<LibVLC_Media_T>):RawPointer<LibVLC_Event_Manager_T>;
+
+	@:native('libvlc_media_get_duration')
+	static function media_get_duration(p_md:RawPointer<LibVLC_Media_T>):LibVLC_Time_T;
+
+	@:native('libvlc_media_parse_with_options')
+	static function media_parse_with_options(p_md:RawPointer<LibVLC_Media_T>, parse_flag:LibVLC_Media_Parse_Flag_T, timeout:Int):Int;
+
+	@:native('libvlc_media_parse_stop')
+	static function media_parse_stop(p_md:RawPointer<LibVLC_Media_T>):Void;
+
+	@:native('libvlc_media_get_parsed_status')
+	static function media_get_parsed_status(p_md:RawPointer<LibVLC_Media_T>):LibVLC_Media_Parsed_Status_T;
+
+	@:native('libvlc_media_tracks_get')
+	static function media_tracks_get(p_md:RawPointer<LibVLC_Media_T>, tracks:RawPointer<RawPointer<RawPointer<LibVLC_Media_Track_T>>>):UInt32;
+
+	@:native('libvlc_media_tracks_release')
+	static function media_tracks_release(p_tracks:RawPointer<RawPointer<LibVLC_Media_Track_T>>, i_count:UInt32):Void;
+
+	@:native('libvlc_media_list_release')
+	static function media_list_release(p_ml:RawPointer<LibVLC_Media_List_T>):Void;
+
+	@:native('libvlc_media_list_count')
+	static function media_list_count(p_ml:RawPointer<LibVLC_Media_List_T>):Int;
+
+	@:native('libvlc_media_list_item_at_index')
+	static function media_list_item_at_index(p_ml:RawPointer<LibVLC_Media_List_T>, i_pos:Int):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_player_get_media')
+	static function media_player_get_media(p_mi:RawPointer<LibVLC_Media_Player_T>):RawPointer<LibVLC_Media_T>;
+
+	@:native('libvlc_media_player_set_media')
+	static function media_player_set_media(p_mi:RawPointer<LibVLC_Media_Player_T>, p_md:RawPointer<LibVLC_Media_T>):Void;
+
+	@:native('libvlc_media_player_play')
+	static function media_player_play(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_stop')
+	static function media_player_stop(p_mi:RawPointer<LibVLC_Media_Player_T>):Void;
+
+	@:native('libvlc_media_player_pause')
+	static function media_player_pause(p_mi:RawPointer<LibVLC_Media_Player_T>):Void;
+
+	@:native('libvlc_media_player_set_pause')
+	static function media_player_set_pause(p_mi:RawPointer<LibVLC_Media_Player_T>, do_pause:Int):Void;
+
+	@:native('libvlc_media_player_is_playing')
+	static function media_player_is_playing(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_is_seekable')
+	static function media_player_is_seekable(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_can_pause')
+	static function media_player_can_pause(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_release')
+	static function media_player_release(p_mi:RawPointer<LibVLC_Media_Player_T>):Void;
+
+	@:native('libvlc_media_player_event_manager')
+	static function media_player_event_manager(mp:RawPointer<LibVLC_Media_Player_T>):RawPointer<LibVLC_Event_Manager_T>;
+
+	@:native('libvlc_media_player_get_time')
+	static function media_player_get_time(p_mi:RawPointer<LibVLC_Media_Player_T>):LibVLC_Time_T;
+
+	@:native('libvlc_media_player_set_time')
+	static function media_player_set_time(p_mi:RawPointer<LibVLC_Media_Player_T>, i_time:LibVLC_Time_T):Int;
+
+	@:native('libvlc_media_player_get_position')
+	static function media_player_get_position(p_mi:RawPointer<LibVLC_Media_Player_T>):Single;
+
+	@:native('libvlc_media_player_set_position')
+	static function media_player_set_position(p_mi:RawPointer<LibVLC_Media_Player_T>, f_pos:Single):Void;
+
+	@:native('libvlc_media_player_get_chapter')
+	static function media_player_get_chapter(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_set_chapter')
+	static function media_player_set_chapter(p_mi:RawPointer<LibVLC_Media_Player_T>, i_chapter:Int):Void;
+
+	@:native('libvlc_media_player_get_chapter_count')
+	static function media_player_get_chapter_count(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_previous_chapter')
+	static function media_player_previous_chapter(p_mi:RawPointer<LibVLC_Media_Player_T>):Void;
+
+	@:native('libvlc_media_player_next_chapter')
+	static function media_player_next_chapter(p_mi:RawPointer<LibVLC_Media_Player_T>):Void;
+
+	@:native('libvlc_media_player_get_rate')
+	static function media_player_get_rate(p_mi:RawPointer<LibVLC_Media_Player_T>):Single;
+
+	@:native('libvlc_media_player_set_rate')
+	static function media_player_set_rate(p_mi:RawPointer<LibVLC_Media_Player_T>, rate:Single):Int;
+
+	@:native('libvlc_media_player_get_length')
+	static function media_player_get_length(p_mi:RawPointer<LibVLC_Media_Player_T>):LibVLC_Time_T;
+
+	@:native('libvlc_media_player_add_slave')
+	static function media_player_add_slave(p_mi:RawPointer<LibVLC_Media_Player_T>, i_type:LibVLC_Media_Slave_Type_T, psz_uri:ConstCharStar, b_select:Bool):Int;
+
+	@:native('libvlc_track_description_list_release')
+	static function track_description_list_release(p_track_description:RawPointer<LibVLC_Track_Description_T>):Void;
+
+	@:native('libvlc_media_player_new')
+	static function media_player_new(p_libvlc_instance:RawPointer<LibVLC_Instance_T>):RawPointer<LibVLC_Media_Player_T>;
+
+	@:native('libvlc_video_set_format_callbacks')
+	static function video_set_format_callbacks(mp:RawPointer<LibVLC_Media_Player_T>, setup:LibVLC_Video_Format_CB, cleanup:LibVLC_Video_Cleanup_CB):Void;
+
+	@:native('libvlc_video_set_callbacks')
+	static function video_set_callbacks(mp:RawPointer<LibVLC_Media_Player_T>, lock:LibVLC_Video_Lock_CB, unlock:LibVLC_Video_Unlock_CB,
+		display:LibVLC_Video_Display_CB, opaque:RawPointer<cpp.Void>):Void;
+
+	@:native('libvlc_video_set_format')
+	static function video_set_format(mp:RawPointer<LibVLC_Media_Player_T>, chroma:ConstCharStar, width:UInt32, height:UInt32, pitch:UInt32):Void;
+
+	@:native('libvlc_video_get_size')
+	static function video_get_size(mp:RawPointer<LibVLC_Media_Player_T>, num:UInt32, px:RawPointer<UInt32>, py:RawPointer<UInt32>):Int;
+
+	@:native('libvlc_video_get_spu')
+	static function video_get_spu(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_video_get_spu_count')
+	static function video_get_spu_count(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_video_get_spu_description')
+	static function video_get_spu_description(p_mi:RawPointer<LibVLC_Media_Player_T>):RawPointer<LibVLC_Track_Description_T>;
+
+	@:native('libvlc_video_set_spu')
+	static function video_set_spu(p_mi:RawPointer<LibVLC_Media_Player_T>, i_spu:Int):Int;
+
+	@:native('libvlc_video_get_spu_delay')
+	static function video_get_spu_delay(p_mi:RawPointer<LibVLC_Media_Player_T>):Int64;
+
+	@:native('libvlc_video_set_spu_delay')
+	static function video_set_spu_delay(p_mi:RawPointer<LibVLC_Media_Player_T>, i_delay:Int64):Int;
+
+	@:native('libvlc_video_get_track_count')
+	static function video_get_track_count(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_video_get_track_description')
+	static function video_get_track_description(p_mi:RawPointer<LibVLC_Media_Player_T>):RawPointer<LibVLC_Track_Description_T>;
+
+	@:native('libvlc_video_get_track')
+	static function video_get_track(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_video_set_track')
+	static function video_set_track(p_mi:RawPointer<LibVLC_Media_Player_T>, i_track:Int):Int;
+
+	@:native('libvlc_audio_get_volume')
+	static function audio_get_volume(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_audio_set_volume')
+	static function audio_set_volume(p_mi:RawPointer<LibVLC_Media_Player_T>, i_volume:Int):Int;
+
+	@:native('libvlc_audio_set_format_callbacks')
+	static function audio_set_format_callbacks(mp:RawPointer<LibVLC_Media_Player_T>, setup:LibVLC_Audio_Setup_CB, cleanup:LibVLC_Audio_Cleanup_CB):Void;
+
+	@:native('libvlc_audio_set_callbacks')
+	static function audio_set_callbacks(mp:RawPointer<LibVLC_Media_Player_T>, play:LibVLC_Audio_Play_CB, pause:LibVLC_Audio_Pause_CB,
+		resume:LibVLC_Audio_Resume_CB, flush:LibVLC_Audio_Flush_CB, drain:LibVLC_Audio_Drain_CB, opaque:RawPointer<cpp.Void>):Void;
+
+	@:native('libvlc_audio_set_volume_callback')
+	static function audio_set_volume_callback(mp:RawPointer<LibVLC_Media_Player_T>, set_volume:LibVLC_Audio_Set_Volume_CB):Void;
+
+	@:native('libvlc_audio_set_format')
+	static function audio_set_format(mp:RawPointer<LibVLC_Media_Player_T>, format:ConstCharStar, rate:UInt32, channels:UInt32):Void;
+
+	@:native('libvlc_audio_get_delay')
+	static function audio_get_delay(p_mi:RawPointer<LibVLC_Media_Player_T>):Int64;
+
+	@:native('libvlc_audio_set_delay')
+	static function audio_set_delay(p_mi:RawPointer<LibVLC_Media_Player_T>, i_delay:Int64):Int;
+
+	@:native('libvlc_audio_get_track_count')
+	static function audio_get_track_count(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_audio_get_track_description')
+	static function audio_get_track_description(p_mi:RawPointer<LibVLC_Media_Player_T>):RawPointer<LibVLC_Track_Description_T>;
+
+	@:native('libvlc_audio_get_track')
+	static function audio_get_track(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_audio_set_track')
+	static function audio_set_track(p_mi:RawPointer<LibVLC_Media_Player_T>, i_track:Int):Int;
+
+	@:native('libvlc_media_player_get_role')
+	static function media_player_get_role(p_mi:RawPointer<LibVLC_Media_Player_T>):Int;
+
+	@:native('libvlc_media_player_set_role')
+	static function media_player_set_role(p_mi:RawPointer<LibVLC_Media_Player_T>, role:UInt32):Int;
+}

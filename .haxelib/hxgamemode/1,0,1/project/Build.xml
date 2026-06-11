@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+	<pragma once="true" />
+
+	<files id="haxe">
+		<compilerflag value="-I${haxelib:hxgamemode}/project/gamemode/lib" />
+	</files>
+
+	<files id="__main__">
+		<compilerflag value="-I${haxelib:hxgamemode}/project/gamemode/lib" />
+	</files>
+</xml>

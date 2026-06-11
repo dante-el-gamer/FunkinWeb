@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://lime.openfl.org/project/1.0.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://lime.openfl.org/project/1.0.4 http://lime.openfl.org/xsd/project-1.0.4.xsd">
+
+	<!--Application Settings-->
+
+	<meta title="hxVLC Sample (Flixel)" packageName="com.majigsaw77.hxvlc.flixel" package="com.majigsaw77.hxvlc.flixel" version="0.0.1" company="MAJigsaw77" />
+
+	<app file="Sample" main="Main" path="export" preloader="flixel.system.FlxPreloader" />
+
+	<!--Architecture Settings-->
+
+	<architecture name="arm64" exclude="armv7" if="android" />
+
+	<!--Window Settings-->
+
+	<window orientation="landscape" width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" fullscreen="false" resizable="true" />
+
+	<window fullscreen="true" resizable="false" if="mobile" />
+
+	<!--Path Settings-->
+
+	<source path="source" />
+
+	<!--Libraries-->
+
+	<haxelib name="flixel" />
+
+	<section if="cpp">
+		<haxelib name="hxvlc" if="desktop || mobile" />
+	</section>
+
+	<haxelib name="extension-androidtools" if="android" />
+
+	<haxelib name="hxcpp-debug-server" if="debug" unless="mobile" optional="true" />
+
+	<!--Libraries Settings-->
+
+	<haxedef name="FLX_NO_TOUCH" if="desktop" />
+	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+
+	<section if="debug">
+		<haxedef name="HXVLC_VERBOSE" value="4" />
+		<haxedef name="HXVLC_SHOW_LOG_TYPE" />
+		<haxedef name="HXVLC_LOGGING" />
+	</section>
+
+	<!--Undefinitions-->
+
+	<undefine name="openfl-disable-handle-error" if="debug" />
+
+	<!--Code Cleanup and Full Compile of Classes-->
+
+	<haxeflag name="-dce" value="full" />
+
+	<haxeflag name="--macro" value="include('hxvlc')" />
+
+	<!--Pretty Message Reporting-->
+
+	<haxedef name="message.reporting" value="pretty" />
+
+	<!--Analyzer Optimization-->
+
+	<haxedef name="analyzer-optimize" />
+</project>

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "hPAEVYKvozw=",
+  "success": true,
+  "projectFilePath": "E:\\Programming\\Funkin'\\SECRET\\Funkin-secret-3\\.haxelib\\jsonpath\\git\\test\\consensus\\json-path-comparison\\implementations\\dotNET_JsonPath.Net\\Dotnet_JsonPath.Net.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Eric\\.nuget\\packages\\json.more.net\\2.0.0\\json.more.net.2.0.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\jsonpath.net\\1.0.0\\jsonpath.net.1.0.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\Eric\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

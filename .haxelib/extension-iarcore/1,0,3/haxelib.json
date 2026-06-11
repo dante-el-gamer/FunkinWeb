@@ -1,0 +1,23 @@
+{
+	"name": "extension-iarcore",
+	"url": "https://github.com/LimeExtensions/extension-iarcore",
+	"license": "MIT",
+	"tags": [
+		"android",
+		"ios",
+		"java",
+		"objcpp",
+		"haxe",
+		"lime",
+		"iar"
+	],
+	"description": "A Haxe/Lime extension that implements In-App Reviews (IAR) functionality for Android and iOS devices.",
+	"version": "1.0.3",
+	"releasenote": "Lock Google Play In-App Review library version.",
+	"contributors": [
+		"MAJigsaw77"
+	],
+	"dependencies": {
+		"lime": ""
+	}
+}

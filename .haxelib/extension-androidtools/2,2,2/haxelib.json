@@ -1,0 +1,21 @@
+{
+	"name": "extension-androidtools",
+	"url": "https://github.com/LimeExtensions/extension-androidtools",
+	"license": "MIT",
+	"tags": [
+		"android",
+		"java",
+		"haxe",
+		"jni"
+	],
+	"description": "A Haxe/Lime extension that incorporates Java functions through JNI.",
+	"version": "2.2.2",
+	"releasenote": "Some cleanup.",
+	"contributors": [
+		"MAJigsaw77"
+	],
+	"dependencies": {
+		"hxcpp":"",
+		"lime":""
+	}
+}

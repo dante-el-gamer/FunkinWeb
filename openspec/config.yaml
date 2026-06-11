@@ -1,0 +1,31 @@
+# openspec/config.yaml
+schema: spec-driven
+
+context: |
+  Tech stack: Haxe 4.3.6 + OpenFL + Flixel + Lime, HXP build (project.hxp), HMM package manager
+  Architecture: Feature-flag driven game (Friday Night Funkin' 0.8.5), state-machine UI (Flixel states), HScript modding via Polymod, atlas-based animation via flixel-animate
+  Testing: No test runner installed. hamcrest (Haxe assertion lib) declared in hmm.json deps but no tests/ directory, no test CI step. Strict TDD disabled.
+  Style: Haxe formatter (hxformat.json), Prettier (.prettierrc.js), haxe-checkstyle lint (checkstyle.json), @:nullSafety annotations, camelCase locals/methods, PascalCase types, spaces for indentation (2 spaces), 160 col max line length
+
+rules:
+  proposal:
+    - Include rollback plan for risky changes
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Include sequence diagrams for complex flows
+    - Document architecture decisions with rationale
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    - Follow existing code patterns (Haxe/OpenFL/Flixel conventions)
+    tdd: false
+    test_command: ""
+  verify:
+    test_command: ""
+    build_command: "haxelib run lime build linux -v -debug"
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas

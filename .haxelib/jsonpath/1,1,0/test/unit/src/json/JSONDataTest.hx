@@ -1,0 +1,163 @@
+package json;
+
+import json.JSONData;
+
+class JSONDataTest
+{
+	/**
+	 * Performs all tests.
+	 * Each test will attempt operations, and throw an error if they fail or give a bad result.
+	 */
+	public static function test():Void
+	{
+		testKeys();
+
+		testBooks();
+
+		testGetByPath();
+		testEditByPath();
+
+		trace('JSONDataTest: Done.');
+	}
+
+	/**
+	 * Tests the keys() method to ensure that proper results are returned,
+	 * for both objects and arrays.
+	 */
+	public static function testKeys():Void
+	{
+		final TEST_DATA_1:String = '{ "a": 1, "b": 2 }';
+		var result1 = JSONData.parse(TEST_DATA_1);
+		final TEST_DATA_2:String = '{ "c": 3, "d": 4 }';
+		var result2 = JSONData.parse(TEST_DATA_2);
+		final TEST_DATA_3:String = '[1, 2, 3]';
+		var result3 = JSONData.parse(TEST_DATA_3);
+
+		var result1Keys = result1.keys();
+		result1Keys.sort(thx.Dynamics.compare);
+		Test.assertEqualsUnordered(result1Keys, ['a', 'b']);
+
+		var result2Keys = result2.keys();
+		result2Keys.sort(thx.Dynamics.compare);
+		Test.assertEqualsUnordered(result2Keys, ['c', 'd']);
+
+		var result3Keys = result3.keys();
+		result3Keys.sort(thx.Dynamics.compare);
+		Test.assertEqualsUnordered(result3Keys, ['0', '1', '2']);
+		Test.assertNotEqualsUnordered(result3Keys, [0, 1, 2]);
+	}
+
+	/**
+	 * Test parsing a larger JSON example, and ensure the results are correct.
+	 */
+	public static function testBooks():Void
+	{
+		final TEST_DATA_BOOKS:String = '{
+            "store": {
+                "book": [
+                    {
+                        "category": "reference",
+                        "author": "Nigel Rees",
+                        "title": "Sayings of the Century",
+                        "price": 8.95
+                    },
+                    {
+                        "category": "fiction",
+                        "author": "Evelyn Waugh",
+                        "title": "Sword of Honour",
+                        "price": 12.99
+                    },
+                    {
+                        "category": "fiction",
+                        "author": "Herman Melville",
+                        "title": "Moby Dick",
+                        "isbn": "0-553-21311-3",
+                        "price": 8.99
+                    },
+                    {
+                        "category": "fiction",
+                        "author": "J. R. R. Tolkien",
+                        "title": "The Lord of the Rings",
+                        "isbn": "0-395-19395-8",
+                        "price": 22.99
+                    }
+                ],
+                "bicycle": {
+                    "color": "red",
+                    "price": 19.95
+                }
+            },
+            "expensive": 10
+        }';
+
+		var books = JSONData.parse(TEST_DATA_BOOKS);
+
+		var booksKeys = books.keys();
+		booksKeys.sort(thx.Dynamics.compare);
+		Test.assertEqualsUnordered(booksKeys, ['expensive', 'store']);
+	}
+
+	/**
+	 * Test using `getByPath()` to retrieve data from a JSON object.
+	 */
+	public static function testGetByPath():Void
+	{
+		final TEST_DATA_1:String = '{ "a": 1, "b": 2 }';
+
+		var data1 = JSONData.parse(TEST_DATA_1);
+
+		var result = data1.getByPath("$['a']");
+		Test.assertEquals(result, 1);
+
+		var result = data1.getByPath("$['b']");
+		Test.assertEquals(result, 2);
+	}
+
+	/**
+	 * Test using `insertByPath()` to insert data into a `JSONData` object.
+	 */
+	public static function testEditByPath():Void {
+		// Insert at index 0 into an array.
+		var data:JSONData = [];
+		data.insertByPath("$[0]", 1);
+		Test.assertEquals(data, [1]);
+
+		// Allow numeric indices but not string indices, even if the string is a valid number.
+		Test.assertError(() ->
+		{
+			var data:JSONData = [];
+			data.insertByPath("$['0']", 1);
+		}, 'insert(): bad array index: 0');
+
+		var data:JSONData = [1, 2, 3];
+		var result = data.existsByPath("$[0]");
+		Test.assertEquals(result, true);
+
+		var data:JSONData = [1, 2, 3];
+		var result = data.copy();
+		Test.assertEquals(result, [1, 2, 3]);
+
+		var data:JSONData = {"foo": "bar"};
+		var result = data.insertByPath("$", {"baz": "qux"});
+		Test.assertEquals(result, {"baz": "qux"});
+
+		var data:JSONData = {"foo": "bar", "baz": null};
+		var result = data.get("bar", NoValue);
+		Test.assertEquals(result, NoValue);
+
+		var result = data.get("baz", NoValue);
+		Test.assertEquals(result, null);
+
+		// Allow numeric indices but not string indices, even if the string is a valid number.
+		Test.assertError(() ->
+		{
+			var doc:JSONData = {"foo": 1, "baz": [1,2,3,4]};
+			var result = doc.getByPath("$['baz']['1e0']");
+			trace(result);
+		}, '[/baz] get(): bad array index: 1e0');
+	}
+}
+
+enum NoValue {
+	NoValue;
+}

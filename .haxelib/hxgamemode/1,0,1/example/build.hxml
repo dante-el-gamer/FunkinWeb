@@ -1,0 +1,7 @@
+-cp ./
+-D analyzer-optimize
+-lib hxgamemode
+-main Main
+-cpp bin
+-cmd cp gamemode.ini bin/gamemode.ini
+-cmd bin/Main

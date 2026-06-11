@@ -1,0 +1,9 @@
+root = implementations/PHP_Goessner
+builddir = $root/build
+
+rule install
+  command = $root/install.sh $out
+
+build $builddir/jsonpath.php: install | $root/install.sh
+
+build $root/install: phony $builddir/jsonpath.php

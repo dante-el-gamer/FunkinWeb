@@ -1,0 +1,8 @@
+name: Dart_json_path
+description: Dart json_path adapter
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  json_path: ^0.7.0
