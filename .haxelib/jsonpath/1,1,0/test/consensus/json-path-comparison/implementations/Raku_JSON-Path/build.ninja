@@ -1,9 +1,0 @@
-root = implementations/Raku_JSON-Path
-builddir = $root/build
-
-rule install_json_path
-  command = mkdir -p $builddir/deps && zef install --to=$builddir/deps JSON::Fast JSON::Path && echo > $out
-
-build $builddir/zef_installed_locally: install_json_path
-
-build $root/install: phony $builddir/zef_installed_locally

@@ -1,9 +1,0 @@
-root = implementations/JavaScript_brunerd
-builddir = $root/build
-
-rule install
-  command = $root/install.sh $out
-
-build $builddir/jsonpath_export.js: install | $root/install.sh
-
-build $root/install: phony $builddir/jsonpath_export.js

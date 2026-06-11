@@ -1,9 +1,0 @@
-root = implementations/Haskell_jsonpath
-builddir = $root/build
-
-rule install
-  command = $root/install.sh $$(dirname $out)
-
-build $builddir/json-path-comparison: install | $root/json-path-comparison.cabal $root/app/Main.hs
-
-build $root/install: phony $builddir/json-path-comparison
